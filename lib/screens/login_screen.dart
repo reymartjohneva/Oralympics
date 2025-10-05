@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                   
                   // App Title
                   Text(
-                    'SpeakSmart',
+                    'Oralympics',
                     style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
