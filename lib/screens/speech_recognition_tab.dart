@@ -353,6 +353,98 @@ class _SpeechRecognitionTabState extends State<SpeechRecognitionTab>
             ),
           ),
 
+          SizedBox(height: 30),
+
+          // Control Buttons (Play, Pause, Stop)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Play Button
+              GestureDetector(
+                onTap: _isRecording ? null : _toggleRecording,
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: _isRecording ? Colors.grey[300] : Color(0xFF64B5F6),
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.15),
+                        blurRadius: 6,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.play_arrow,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(width: 20),
+              // Pause Button
+              GestureDetector(
+                onTap: _isRecording ? _toggleRecording : null,
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: _isRecording ? Color(0xFF64B5F6) : Colors.grey[300],
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.15),
+                        blurRadius: 6,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.pause,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(width: 20),
+              // Stop Button
+              GestureDetector(
+                onTap: (_isRecording || _text.isNotEmpty) ? () {
+                  if (_isRecording) {
+                    _toggleRecording();
+                  }
+                  _resetTimer();
+                  setState(() {
+                    _text = '';
+                    _confidence = 1.0;
+                  });
+                } : null,
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: (_isRecording || _text.isNotEmpty) ? Color(0xFF64B5F6) : Colors.grey[300],
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.15),
+                        blurRadius: 6,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.stop,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+
           SizedBox(height: 20),
 
           // Recording Status Indicator
